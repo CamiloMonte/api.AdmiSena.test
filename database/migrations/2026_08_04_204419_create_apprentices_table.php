@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('apprentices', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+             $table->string('correo');
+              $table->string('numero de telefono');
             $table->timestamps();
              
 
