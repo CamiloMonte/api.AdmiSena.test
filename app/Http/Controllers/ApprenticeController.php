@@ -12,7 +12,8 @@ class ApprenticeController extends Controller
      */
     public function index()
     {
-
+        $apprentice = Apprentice::with('course','computer')->get();
+        return response()->json($apprentice);
        
     }
 
@@ -58,4 +59,8 @@ class ApprenticeController extends Controller
     {
         
         
-}
+
+        } 
+    
+    
+    }
