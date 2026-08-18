@@ -7,59 +7,47 @@ use Illuminate\Http\Request;
 
 class ComputerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        //
+        $computer = Computer::all();
+        return $computer;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'marca' => 'sometimes|string',
+            'numero' => 'sometimes|string',
+        ]);
+        $computer = Computer::create($request->all());
+        return $computer;
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(Computer $computer)
     {
-        //
+        $computer = Computer::find($computer->id);
+        return $computer;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Computer $computer)
-    {
-        //
-    }
+  
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Computer $computer)
     {
-        //
+       $request->validate([
+            'marca' => 'sometimes|string',
+            'numero' => 'sometimes|string',
+        ]);
+        $computer = Computer::update($request->all());
+        return $computer;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(Computer $computer)
     {
-        //
+        $computer->delete();
+        return $computer;
     }
 }

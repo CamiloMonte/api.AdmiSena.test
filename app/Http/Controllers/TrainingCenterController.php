@@ -12,54 +12,46 @@ class TrainingCenterController extends Controller
      */
     public function index()
     {
-        //
+        $training_center = Training_center::all();
+        return $training_center;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+ 
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
-        //
+       $request->validate([
+            'nombre' => 'sometimes|string',
+            'ubicacion' => 'sometimes|string',
+        ]);
+        $training_center = Training_center::create($request->all());
+        return $training_center;
     }
 
-    /**
-     * Display the specified resource.
-     */
+ 
     public function show(Training_center $training_center)
     {
-        //
+        $training_center = Training_center::find($training_center->id);
+        return $training_center;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Training_center $training_center)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
+   
+  
     public function update(Request $request, Training_center $training_center)
     {
-        //
+        $request->validate([
+            'nombre' => 'sometimes|string',
+            'ubicacion' => 'sometimes|string',
+        ]);
+        $training_center = Training_center::update($request->all());
+        return $training_center;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(Training_center $training_center)
     {
-        //
+        $training_center->delete();
+        return $training_center;
     }
 }

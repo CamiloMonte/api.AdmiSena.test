@@ -12,23 +12,23 @@ class AreaController extends Controller
      */
     public function index()
     {
-        //
+        $area = Area::all();
+        return $area;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+   
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'sometimes|string',
+            
+        ]);
+        $area = Area::create($request->all());
+        return $area;
     }
 
     /**
@@ -36,30 +36,25 @@ class AreaController extends Controller
      */
     public function show(Area $area)
     {
-        //
+        $area = Area::find($area->id);
+        return $area;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Area $area)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, Area $area)
     {
-        //
+        $request->validate([
+            'nombre' => 'sometimes|string',
+            
+        ]);
+        $area = Area::update($request->all());
+        return $area;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(Area $area)
     {
-        //
+        $area->delete();
+        return $area;
     }
 }
